@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAVE COMPANIES</title>
+</head>
+<body>
+
+SAVE COMPANIES:
+<form action="/addCompanies" method="post">
+
+    <input  th:if="${companies != null}" type="hidden" th:value="${companies.id} " name="id">
+    NAME:<input type="text" name="name" th:value="${companies == null}? '': ${companies.name}"><br>
+    SIZE:<input type="text" name="size" th:value="${companies == null}? '': ${companies.size}"><br>
+    ADDRESS:<input type="text" name="address" th:value="${companies == null}? '': ${companies.address}"><br>
+    <input type="submit" value="SAVE">
+
+</form>
+
+</body>
+</html>
