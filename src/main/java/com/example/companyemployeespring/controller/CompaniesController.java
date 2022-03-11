@@ -1,8 +1,8 @@
 package com.example.companyemployeespring.controller;
 
 import com.example.companyemployeespring.entity.Companies;
-import com.example.companyemployeespring.repository.CompaniesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.companyemployeespring.service.CompaniesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,63 +10,38 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-import java.util.Optional;
-
 @Controller
+@RequiredArgsConstructor
 public class CompaniesController {
 
-    @Autowired
-    private CompaniesRepository companiesRepository;
+    private final CompaniesService companiesService;
 
     @GetMapping("/companies")
-    public String main(ModelMap map){
-
-        List<Companies> companies = companiesRepository.findAll();
-
-        map.addAttribute("companies",companies);
-
+    public String companies(ModelMap map) {
+        map.addAttribute("companies", companiesService.findAll());
         return "companies";
     }
 
     @GetMapping("/addCompanies")
-    public String addCompaniesPage(){
-
+    public String addCompaniesPage() {
         return "saveCompanies";
-
     }
 
     @PostMapping("/addCompanies")
-    public String addCompanies(@ModelAttribute Companies companies){
-
-        companiesRepository.save(companies);
-
+    public String addCompanies(@ModelAttribute Companies companies) {
+        companiesService.save(companies);
         return "redirect:/companies";
-
     }
 
     @GetMapping("/editCompanies/{id}")
     public String editCompanies(ModelMap map, @PathVariable("id") int id) {
-
-        Optional<Companies> companies = companiesRepository.findById(id);
-
-        if (companies.isPresent()) {
-
-            map.addAttribute("companies", companies.get());
-
-            return "saveCompanies";
-
-        } else {
-
-            return "redirect:/companies";
-
-        }
+        map.addAttribute("companies", companiesService.findById(id));
+        return "saveCompanies";
     }
 
     @GetMapping("/deleteCompanies/{id}")
     public String deleteCompanies(@PathVariable("id") int id) {
-        companiesRepository.deleteById(id);
+        companiesService.deleteById(id);
         return "redirect:/companies";
-
     }
 }

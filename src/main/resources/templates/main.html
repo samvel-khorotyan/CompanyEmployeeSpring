@@ -2,14 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MAIN</title>
+    <title th:text="#{main.title}"></title>
 </head>
 <body>
 
 <div>
-<a href="/companies"><h3>COMPANIES</h3>
+    <a href="?lang=hy">ARMENIAN</a> | <a href="?lang=ru">RUSSIAN</a> | <a href="?lang=en">ENGLISH</a>
+</div><br>
 
-</a><a href="/employee"><h3>EMPLOYEE</h3></a>
+<div>
+<a href="/companies" th:text="#{main.companies}"><h3></h3></a>
+<a href="/employee" th:text="#{main.employee}"><h3></h3></a>
 </div>
 
 </body>

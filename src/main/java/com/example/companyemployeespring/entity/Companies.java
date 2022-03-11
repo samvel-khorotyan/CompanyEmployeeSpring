@@ -21,7 +21,6 @@ public class Companies {
     private String name;
     private int size;
     private String address;
-
 }
 
 

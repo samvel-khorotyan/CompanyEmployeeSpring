@@ -2,14 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>EMPLOYEE</title>
+    <title th:text="#{employee.title}"></title>
 </head>
 <body>
 
-<a href="/addEmployee">ADD EMPLOYEE</a>
+<a href="/addEmployee" th:text="#{employee.add.employee}"></a>
 
 <table border="1">
-
     <tr>
         <th>id</th>
         <th>name</th>
@@ -22,9 +21,7 @@
         <th>image</th>
         <th>delete</th>
         <th>edit</th>
-
     </tr>
-
     <tr th:each="empl :${employees}">
         <td th:text="${empl.id}"></td>
         <td th:text="${empl.name}"></td>
@@ -34,26 +31,14 @@
         <td th:text="${empl.salary}"></td>
         <td th:text="${empl.position}"></td>
         <td th:text="${empl.companies.name}"></td>
-        <td >
-
-            <img th:if="${empl.picUrl!=null}" th:src="@{/getImage(picName=${empl.picUrl})}" width="50"
-                 height="50"/>
-
-            <img th:if="${empl.picUrl==null}" src="/img/Без названия.png" width="50" height="50"/>
-
+        <td>
+            <img th:if="${empl.picUrl != null}" th:src="@{/getImage(picName=${empl.picUrl})}" width="50" height="50"/>
+            <img th:if="${empl.picUrl == null}" src="/img/Без названия.png" width="50" height="50"/>
         </td>
-
-
-        <td><a th:href="@{'/deleteEmployee/' + ${empl.id}}">DELETE</a></td>
-        <td><a th:href="@{'/editEmployee/' + ${empl.id}}">EDIT</a></td>
-
+        <td><a th:href="@{'/deleteEmployee/' + ${empl.id}}" th:text="#{employee.delete}"></a></td>
+        <td><a th:href="@{'/editEmployee/' + ${empl.id}}" th:text="#{employee.edit}"></a></td>
     </tr>
-
-
-
-
 </table>
-
 
 </body>
 </html>

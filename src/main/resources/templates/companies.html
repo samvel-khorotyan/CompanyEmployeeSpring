@@ -2,16 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>COMPANIES</title>
+    <title th:text="#{companies.title}"></title>
 </head>
 <body>
 
 <div>
-
-    <a href="/addCompanies">ADD COMPANIES</a>
-
+    <a href="/addCompanies" th:text="#{companies.add.companies}"></a><br>
     <table border="1">
-
         <tr>
             <th>id</th>
             <th>name</th>
@@ -19,13 +16,12 @@
             <th>address</th>
             <th>action</th>
         </tr>
-
         <tr th:each="company:${companies}">
             <td th:text="${company.id}"></td>
             <td th:text="${company.name}"></td>
             <td th:text="${company.size}"></td>
             <td th:text="${company.address}"></td>
-            <td><a th:href="@{'/deleteCompanies/' + ${company.getId()}}">DELETE</a> | <a th:href="@{'/editCompanies/' + ${company.getId()}}">EDIT</a></td>
+            <td><a th:href="@{'/deleteCompanies/' + ${company.getId()}}" th:text="#{companies.delete}"></a> | <a th:href="@{'/editCompanies/' + ${company.getId()}}" th:text="#{companies.edit}"></a></td>
         </tr>
     </table>
 </div>

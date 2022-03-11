@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>SAVE EMPLOYEE</title>
+    <title th:text="#{saveEmployee.title}"></title>
 </head>
 <body>
 
@@ -20,7 +20,6 @@ SAVE EMPLOYEE:
         <option th:each="company:${companies}" th:text="${company.name}" th:value="${company.id}"></option>
     </select>
     PIC_URL:<input type="file" name="picture"><br><input type="submit" value="SAVE">
-
 </form>
 
 </body>
